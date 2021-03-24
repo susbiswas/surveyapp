@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chartjs',
     'chartapp.apps.ChartappConfig',
     'users.apps.UsersConfig',
 ]
