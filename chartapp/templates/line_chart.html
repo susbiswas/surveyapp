@@ -11,18 +11,23 @@
 
 <body>
   <h1>Welcome to Covid-19 Post-Vaccination SurveyApp!</h1>
-  <div id="container" style="width: 40%;">
-    <canvas id="prevaccinechart_gender" data-url="{% url 'prevaccinechart_gender' %}"></canvas>
+  <div id="div_gender">
+    <div id="container" style="width: 50%;float: left;">
+      <canvas id="prevaccinechart_gender" data-url="{% url 'prevaccinechart_gender' %}"></canvas>
+    </div>
+    <div id="container" style="width: 50%;float: left;">
+      <canvas id="postvaccinechart_gender" data-url="{% url 'postvaccinechart_gender' %}"></canvas>
+    </div>
   </div>
-  <div id="container" style="width: 40%;">
-    <canvas id="postvaccinechart_gender" data-url="{% url 'postvaccinechart_gender' %}"></canvas>
+  <div id="div_race">
+    <div id="container" style="width: 50%;float: left;">
+      <canvas id="prevaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
+    </div>
+    <div id="container" style="width: 50%;float: left;">
+      <canvas id="postvaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
+    </div>
   </div>
-  <div id="container" style="width: 40%;">
-    <canvas id="prevaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
-  </div>
-  <div id="container" style="width: 40%;">
-    <canvas id="postvaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
-  </div>
+  
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -127,7 +132,7 @@
               labels: data.labels,
               datasets: [{
                 backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
-                label: "Prevaccination health issues based on gender",
+                label: "Prevaccination health issues based on race",
                 data: data.data,
               }]          
             },
@@ -169,7 +174,7 @@
               labels: data.labels,
               datasets: [{
                 backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
-                label: "Postvaccination health issues based on gender",
+                label: "Postvaccination health issues based on race",
                 data: data.data,
               }]          
             },
