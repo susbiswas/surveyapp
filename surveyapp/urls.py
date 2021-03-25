@@ -21,5 +21,8 @@ from chartapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.surveyapp, name='surveyapp'),
-    path('chart/', views.chart, name='chart')
+    path('prevaccinechart_gender/', views.prevaccinechart_gender, name='prevaccinechart_gender'),
+    path('postvaccinechart_gender/', views.postvaccinechart_gender, name='postvaccinechart_gender'),
+    path('prevaccinechart_race/', views.prevaccinechart_race, name='prevaccinechart_race'),
+    path('postvaccinechart_race/', views.postvaccinechart_race, name='postvaccinechart_race'),
 ]

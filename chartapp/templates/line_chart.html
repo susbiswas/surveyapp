@@ -12,7 +12,16 @@
 <body>
   <h1>Welcome to Covid-19 Post-Vaccination SurveyApp!</h1>
   <div id="container" style="width: 40%;">
-    <canvas id="chart" data-url="{% url 'chart' %}"></canvas>
+    <canvas id="prevaccinechart_gender" data-url="{% url 'prevaccinechart_gender' %}"></canvas>
+  </div>
+  <div id="container" style="width: 40%;">
+    <canvas id="postvaccinechart_gender" data-url="{% url 'postvaccinechart_gender' %}"></canvas>
+  </div>
+  <div id="container" style="width: 40%;">
+    <canvas id="prevaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
+  </div>
+  <div id="container" style="width: 40%;">
+    <canvas id="postvaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -20,13 +29,13 @@
   <script>
 
     $(function () {
-
-      var $chart = $("#chart");
+      // based on Gender
+      var $prevaccinechartgender = $("#prevaccinechart_gender");
       $.ajax({
-        url: $chart.data("url"),
+        url: $prevaccinechartgender.data("url"),
         success: function (data) {
 
-          var ctx = $chart[0].getContext("2d");
+          var ctx = $prevaccinechartgender[0].getContext("2d");
 
           new Chart(ctx, {
             type: 'bar',
@@ -63,6 +72,131 @@
         }
       });
 
+      var $postvaccinechartgender = $("#postvaccinechart_gender");
+      $.ajax({
+        url: $postvaccinechartgender.data("url"),
+        success: function (data) {
+
+          var ctx = $postvaccinechartgender[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
+                label: "Postvaccination health issues based on gender",
+                data: data.data,
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Bar Chart'
+              },
+              scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                }]
+              },
+              title: {
+                display: false
+              },
+            }
+          });
+
+        }
+      });
+      // based on Race
+      var $prevaccinechartrace = $("#prevaccinechart_race");
+      $.ajax({
+        url: $prevaccinechartrace.data("url"),
+        success: function (data) {
+
+          var ctx = $prevaccinechartrace[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
+                label: "Prevaccination health issues based on gender",
+                data: data.data,
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Bar Chart'
+              },
+              scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                }]
+              },
+              title: {
+                display: false
+              },
+            }
+          });
+
+        }
+      });
+
+      var $postvaccinechartrace = $("#postvaccinechart_race");
+      $.ajax({
+        url: $postvaccinechartrace.data("url"),
+        success: function (data) {
+
+          var ctx = $postvaccinechartrace[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
+                label: "Postvaccination health issues based on gender",
+                data: data.data,
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Bar Chart'
+              },
+              scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                }]
+              },
+              title: {
+                display: false
+              },
+            }
+          });
+
+        }
+      });
     });
 
   </script>
