@@ -33,9 +33,9 @@
             data: {
               labels: data.labels,
               datasets: [{
-                label: 'General',
-                backgroundColor: 'blue',
-                data: data.data
+                backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
+                label: "Prevaccination health issues based on gender",
+                data: data.data,
               }]          
             },
             options: {
@@ -53,7 +53,10 @@
                       beginAtZero: true
                     }
                 }]
-              }
+              },
+              title: {
+                display: false
+              },
             }
           });
 
