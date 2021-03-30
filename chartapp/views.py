@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from users.models import CustomUser
 from django.shortcuts import render
+from django.db import connection
 
 
 def surveyapp(request):
@@ -9,66 +10,79 @@ def surveyapp(request):
 
 def prevaccinechart_gender(request):
     data = []
-    count= CustomUser.objects.count()
-    male_count = CustomUser.objects.filter(sex = 'M').count()
-    female_count = CustomUser.objects.filter(sex = 'F').count()
-    other_count = CustomUser.objects.filter(sex = 'O').count()
-    data.append(male_count)
-    data.append(female_count)
-    data.append(other_count)
     labels = get_gender_labels()
-
+    parameter = ['M','F','O']
+    for i in parameter:
+        params = {'sex':i}
+        sql_stmt = '''
+             Select count(*) FROM Customer c JOIN chartapp_prevaccine_health_issue p on c.cid = p.cid where c.sex =:sex
+        '''
+        with connection.cursor() as cursor:
+            cursor.execute(sql_stmt, params)
+            row = cursor.fetchone()
+            data.append(row[0])
+    
     return JsonResponse(data={
         'labels': labels,
-        'data': data,
+        'defaultdata': data,
     })
 
 def postvaccinechart_gender(request):
     data = []
-    count= CustomUser.objects.count()
-    male_count = CustomUser.objects.filter(sex = 'M').count()
-    female_count = CustomUser.objects.filter(sex = 'F').count()
-    other_count = CustomUser.objects.filter(sex = 'O').count()
-    data.append(male_count)
-    data.append(female_count)
-    data.append(other_count)
     labels = get_gender_labels()
+    parameter = ['M','F','O']
+    for i in parameter:
+        params = {'sex':i}
+        sql_stmt = '''
+            Select count(*) FROM Customer c JOIN chartapp_postvaccine_health_issue p on c.cid = p.cid where c.sex =:sex
+        '''
+        with connection.cursor() as cursor:
+                cursor.execute(sql_stmt, params)
+                row = cursor.fetchone()
+                data.append(row[0])
 
     return JsonResponse(data={
         'labels': labels,
-        'data': data,
+        'defaultdata': data,
     })
 
 def prevaccinechart_race(request):
     data = []
-    count= CustomUser.objects.count()
-    male_count = CustomUser.objects.filter(sex = 'M').count()
-    female_count = CustomUser.objects.filter(sex = 'F').count()
-    other_count = CustomUser.objects.filter(sex = 'O').count()
-    data.append(male_count)
-    data.append(female_count)
-    data.append(other_count)
     labels = get_race_labels()
+    
+    for i in labels:
+        params = {'race':i}
+        sql_stmt = '''
+            Select count(*) FROM Customer c JOIN chartapp_prevaccine_health_issue p on c.cid = p.cid where c.race =:race
+        '''
+        with connection.cursor() as cursor:
+                cursor.execute(sql_stmt, params)
+                row = cursor.fetchone()
+                data.append(row[0])
+        
 
     return JsonResponse(data={
         'labels': labels,
-        'data': data,
+        'defaultdata': data,
     })
+    
 
 def postvaccinechart_race(request):
     data = []
-    count= CustomUser.objects.count()
-    male_count = CustomUser.objects.filter(sex = 'M').count()
-    female_count = CustomUser.objects.filter(sex = 'F').count()
-    other_count = CustomUser.objects.filter(sex = 'O').count()
-    data.append(male_count)
-    data.append(female_count)
-    data.append(other_count)
     labels = get_race_labels()
-
+    for i in labels:
+        params = {'race':i}
+        sql_stmt = '''
+            Select count(*) FROM Customer c JOIN chartapp_postvaccine_health_issue p on c.cid = p.cid where c.race =:race
+        '''
+        with connection.cursor() as cursor:
+                cursor.execute(sql_stmt, params)
+                row = cursor.fetchone()
+                data.append(row[0])
+    print(data)
     return JsonResponse(data={
         'labels': labels,
-        'data': data,
+        'defaultdata': data,
     })
 
 def get_gender_labels():

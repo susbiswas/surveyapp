@@ -11,55 +11,44 @@
 
 <body>
   <h1>Welcome to Covid-19 Post-Vaccination SurveyApp!</h1>
-  <div id="div_gender">
-    <div id="container" style="width: 50%;float: left;">
-      <canvas id="prevaccinechart_gender" data-url="{% url 'prevaccinechart_gender' %}"></canvas>
-    </div>
-    <div id="container" style="width: 50%;float: left;">
-      <canvas id="postvaccinechart_gender" data-url="{% url 'postvaccinechart_gender' %}"></canvas>
-    </div>
+  <div id="container" style="width: 50%; float: left;">
+    <canvas id="prevaccinechart_gender" data-url="{% url 'prevaccinechart_gender' %}"></canvas>
   </div>
-  <div id="div_race">
-    <div id="container" style="width: 50%;float: left;">
-      <canvas id="prevaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
-    </div>
-    <div id="container" style="width: 50%;float: left;">
-      <canvas id="postvaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
-    </div>
+  <div id="container" style="width: 50%;float: left;">
+    <canvas id="postvaccinechart_gender" data-url="{% url 'postvaccinechart_gender' %}"></canvas>
   </div>
-  
+  <div id="container" style="width: 50%;float: left;">
+    <canvas id="prevaccinechart_race" data-url="{% url 'prevaccinechart_race' %}"></canvas>
+  </div>
+  <div id="container" style="width: 50%;float: left;">
+    <canvas id="postvaccinechart_race" data-url="{% url 'postvaccinechart_race' %}"></canvas>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <script>
-
     $(function () {
       // based on Gender
       var $prevaccinechartgender = $("#prevaccinechart_gender");
       $.ajax({
         url: $prevaccinechartgender.data("url"),
         success: function (data) {
-
-          var ctx = $prevaccinechartgender[0].getContext("2d");
-
-          new Chart(ctx, {
+          var ctx1 = $prevaccinechartgender[0].getContext("2d");
+          
+          new Chart(ctx1, {
             type: 'bar',
             data: {
               labels: data.labels,
               datasets: [{
                 backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
                 label: "Prevaccination health issues based on gender",
-                data: data.data,
+                data: data.defaultdata,
               }]          
             },
             options: {
               responsive: true,
               legend: {
                 position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Bar Chart'
               },
               scales: {
                   yAxes: [{
@@ -82,26 +71,22 @@
         url: $postvaccinechartgender.data("url"),
         success: function (data) {
 
-          var ctx = $postvaccinechartgender[0].getContext("2d");
+          var ctx2 = $postvaccinechartgender[0].getContext("2d");
 
-          new Chart(ctx, {
+          new Chart(ctx2, {
             type: 'bar',
             data: {
               labels: data.labels,
               datasets: [{
                 backgroundColor: ['rgb(69, 126, 205)','rgb(220, 121, 213)','rgb(222, 230, 105)'],
                 label: "Postvaccination health issues based on gender",
-                data: data.data,
+                data: data.defaultdata,
               }]          
             },
             options: {
               responsive: true,
               legend: {
                 position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Bar Chart'
               },
               scales: {
                   yAxes: [{
@@ -123,27 +108,21 @@
       $.ajax({
         url: $prevaccinechartrace.data("url"),
         success: function (data) {
-
-          var ctx = $prevaccinechartrace[0].getContext("2d");
-
-          new Chart(ctx, {
+          var ctx3 = $prevaccinechartrace[0].getContext("2d");
+          new Chart(ctx3, {
             type: 'bar',
             data: {
               labels: data.labels,
               datasets: [{
-                backgroundColor: ['rgb(234, 167, 142)','rgb(105, 215, 215)','rgb(215, 105, 105)','rgb(221, 160, 237)','rgb(160, 237, 187)','rgb(96, 209, 169)'],
+                backgroundColor: ['rgb(175, 147, 204)','rgb(191, 215, 167)','rgb(140, 178, 216)','rgb(216, 140, 195)','rgb(230, 167, 220)','rgb(167, 230, 208)'],
                 label: "Prevaccination health issues based on race",
-                data: data.data,
+                data: data.defaultdata,
               }]          
             },
             options: {
               responsive: true,
               legend: {
                 position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Bar Chart'
               },
               scales: {
                   yAxes: [{
@@ -165,27 +144,21 @@
       $.ajax({
         url: $postvaccinechartrace.data("url"),
         success: function (data) {
-
-          var ctx = $postvaccinechartrace[0].getContext("2d");
-
-          new Chart(ctx, {
+          var ctx4 = $postvaccinechartrace[0].getContext("2d");
+          new Chart(ctx4, {
             type: 'bar',
             data: {
               labels: data.labels,
               datasets: [{
-                backgroundColor: ['rgb(234, 167, 142)','rgb(105, 215, 215)','rgb(215, 105, 105)','rgb(221, 160, 237)','rgb(160, 237, 187)','rgb(96, 209, 169)'],
+                backgroundColor: ['rgb(175, 147, 204)','rgb(191, 215, 167)','rgb(140, 178, 216)','rgb(216, 140, 195)','rgb(230, 167, 220)','rgb(167, 230, 208)'],
                 label: "Postvaccination health issues based on race",
-                data: data.data,
+                data: data.defaultdata,
               }]          
             },
             options: {
               responsive: true,
               legend: {
                 position: 'top',
-              },
-              title: {
-                display: true,
-                text: 'Bar Chart'
               },
               scales: {
                   yAxes: [{
