@@ -79,7 +79,6 @@ def postvaccinechart_race(request):
                 cursor.execute(sql_stmt, params)
                 row = cursor.fetchone()
                 data.append(row[0])
-    print(data)
     return JsonResponse(data={
         'labels': labels,
         'defaultdata': data,
