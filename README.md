@@ -42,3 +42,7 @@ You should see a virtual environment indicator in the command prompt like below:
 Pip install
 
 pip install -r requirements.txt
+
+Open terminal and run the below command:
+/Applications/Python 3.6/Install Certificates.command
+
