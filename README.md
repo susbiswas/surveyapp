@@ -9,7 +9,7 @@ Using SSH
 git@github.com:susbiswas/surveyapp.git
 
 Step 2 -- Setup a Python virtual env.
-Move into the cloned path --- njit-dbms-final
+Move into the cloned path --- njit-python-final
 
 Then, ensure you have Python 3.7+ -- python -V
 
