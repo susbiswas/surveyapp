@@ -44,5 +44,5 @@ Pip install
 pip install -r requirements.txt
 
 Open terminal and run the below command:
-/Applications/Python 3.6/Install Certificates.command
+/Applications/Python 3.9/Install Certificates.command
 
