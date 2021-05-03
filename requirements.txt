@@ -1,2 +1,2 @@
 django
-django-chartjs
+chatterbot==1.0.0

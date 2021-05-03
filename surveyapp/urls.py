@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from chartapp import views
+from chartapp.views import ChatterBotApiView,ChatterBotAppView
 
 
 urlpatterns = [
@@ -25,4 +26,6 @@ urlpatterns = [
     path('postvaccinechart_gender/', views.postvaccinechart_gender, name='postvaccinechart_gender'),
     path('prevaccinechart_race/', views.prevaccinechart_race, name='prevaccinechart_race'),
     path('postvaccinechart_race/', views.postvaccinechart_race, name='postvaccinechart_race'),
+    path('chatterbot/', ChatterBotApiView.as_view(), name='chatterbot'),
+    path('chatbot/', ChatterBotAppView.as_view(), name='main'),
 ]
